@@ -29,22 +29,31 @@ public class WorldEditor extends GameScene {
 
     @Override
     public void mouseClicked(int x, int y) {
-
+        if (y >= 320){
+            bottomBar.mouseClicked(x,y);
+        }
     }
 
     @Override
     public void mouseMoved(int x, int y) {
-
+        if (y >= 320){
+            bottomBar.mouseMoved(x,y);
+        }
     }
 
     @Override
     public void mousePressed(int x, int y) {
-
+        if (y >= 320){
+            bottomBar.mousePressed(x,y);
+        }
     }
 
     @Override
     public void mouseReleased(int x, int y) {
-
+        bottomBar.mouseReleased(x,y);
     }
 
+    public BottomBar getBottomBar() {
+        return bottomBar;
+    }
 }

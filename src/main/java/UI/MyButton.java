@@ -24,6 +24,7 @@ public class MyButton {
         this.bounds = new Rectangle(x,y,width,height);
     }
 
+    // Draw Methods
     public void draw(Graphics g){
         // Body
         drawBody(g);
@@ -48,22 +49,23 @@ public class MyButton {
         }
         else {
             g.setColor(Color.WHITE);
-            g.fillRect(x,y,width,height);
         }
-    }
-
-    public void setMouseOver(boolean mouseOver){
-        this.mouseOver = mouseOver;
-    }
-
-    public void setMousePressed(boolean mousePressed){
-        this.mousePressed = mousePressed;
+        g.fillRect(x,y,width,height);
     }
 
     private void drawText(Graphics g) {
         int w = g.getFontMetrics().stringWidth(text);
         int h = g.getFontMetrics().getHeight();
         g.drawString(text, x - w / 2 + width / 2, y + h / 2 + height / 2 - 3);
+    }
+
+    // Mouse IO
+    public void setMouseOver(boolean mouseOver){
+        this.mouseOver = mouseOver;
+    }
+
+    public void setMousePressed(boolean mousePressed){
+        this.mousePressed = mousePressed;
     }
 
     public Rectangle getBounds(){
