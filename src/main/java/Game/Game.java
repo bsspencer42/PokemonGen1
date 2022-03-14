@@ -6,6 +6,7 @@ import Scenes.Battle;
 import Scenes.Menu;
 import Scenes.World;
 import Objects.Tile;
+import Scenes.WorldEditor;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ public class Game extends JFrame implements Runnable {
     private Menu menu;
     private Battle battle;
     private World world;
+    private WorldEditor worldEditor;
 
     // Threading
     private Thread gameThread;
@@ -41,6 +43,7 @@ public class Game extends JFrame implements Runnable {
         menu = new Menu(this);
         battle = new Battle(this);
         world = new World(this);
+        worldEditor = new WorldEditor(this);
         sprites = new SpriteDAO().getTileSet();
     }
 
@@ -111,7 +114,15 @@ public class Game extends JFrame implements Runnable {
     public World getWorld() {
         return world;
     }
+
+    public WorldEditor getWorldEditor(){
+        return worldEditor;
+    }
     public ArrayList<Tile> getSprites(){
         return sprites;
+    }
+
+    public GameScreen getGameScreen() {
+        return gameScreen;
     }
 }

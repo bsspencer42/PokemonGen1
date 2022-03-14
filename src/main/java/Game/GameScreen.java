@@ -12,8 +12,8 @@ public class GameScreen extends JPanel {
     private MyMouseListener myMouseListener;
 
     public GameScreen(Game game){
-        setPanelSize();
         this.game = game;
+        setPanelSize(480,320);
     }
 
     // Inputs
@@ -27,11 +27,13 @@ public class GameScreen extends JPanel {
         requestFocus();
     }
 
-    private void setPanelSize() {
-        this.size = new Dimension(480,320);
+    public void setPanelSize(int width, int height) {
+        this.size = new Dimension(width,height);
+        setSize(size);
         setMinimumSize(size);
         setPreferredSize(size);
         setMaximumSize(size);
+        game.pack();
     }
 
     public void paintComponent(Graphics g){

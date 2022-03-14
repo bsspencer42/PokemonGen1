@@ -25,6 +25,8 @@ public class MyMouseListener implements MouseListener, MouseMotionListener {
                     break;
                 case BATTLE:
                     break;
+                case WORLDEDITOR:
+                    break;
             }
         }
     }
@@ -39,6 +41,8 @@ public class MyMouseListener implements MouseListener, MouseMotionListener {
                 break;
             case BATTLE:
                 break;
+            case WORLDEDITOR:
+                break;
         }
 
     }
@@ -52,6 +56,8 @@ public class MyMouseListener implements MouseListener, MouseMotionListener {
             case WORLD:
                 break;
             case BATTLE:
+                break;
+            case WORLDEDITOR:
                 break;
         }
     }
@@ -80,6 +86,8 @@ public class MyMouseListener implements MouseListener, MouseMotionListener {
             case WORLD:
                 break;
             case BATTLE:
+                break;
+            case WORLDEDITOR:
                 break;
         }
 

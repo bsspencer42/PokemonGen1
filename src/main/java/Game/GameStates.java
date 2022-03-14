@@ -2,6 +2,7 @@ package Game;
 
 public enum GameStates {
     WORLD,
+    WORLDEDITOR,
     BATTLE,
     MENU;
     public static GameStates gameState = MENU;

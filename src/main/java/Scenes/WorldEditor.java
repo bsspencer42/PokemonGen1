@@ -6,12 +6,14 @@ import helpz.LevelBuild;
 
 import java.awt.*;
 
-public class World extends GameScene {
+public class WorldEditor extends GameScene {
     private int[][] lvl;
+    private BottomBar bottomBar;
 
-    public World(Game game) {
-        super(game);
+    public WorldEditor(Game game) {
+        super(game,480, 420);
         lvl = LevelBuild.getLevelData();
+        bottomBar = new BottomBar(0,320,480,100);
     }
 
     @Override
@@ -22,6 +24,7 @@ public class World extends GameScene {
                 g.drawImage(super.getGame().getSprites().get(lvl[y][x]).getSprite(), x * 32, y * 32, null);
             }
         }
+        bottomBar.draw(g);
     }
 
     @Override

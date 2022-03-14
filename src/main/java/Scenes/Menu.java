@@ -7,10 +7,9 @@ import helpz.LevelBuild;
 import java.awt.*;
 import static Game.GameStates.*;
 
-public class Menu extends GameScene implements SceneMethods {
+public class Menu extends GameScene {
     private int[][] lvl;
     private MyButton bWorld, bQuit;
-
     public Menu(Game game) {
         super(game);
         lvl = LevelBuild.getLevelData();
@@ -18,7 +17,7 @@ public class Menu extends GameScene implements SceneMethods {
     }
 
     private void initButtons() {
-        bWorld = new MyButton("Play Pokemon", 175, 100, 100,30);
+        bWorld = new MyButton("World Editor", 175, 100, 100,30);
         bQuit = new MyButton("Quit", 175, 150, 100, 30);
     }
 
@@ -31,7 +30,7 @@ public class Menu extends GameScene implements SceneMethods {
     @Override
     public void mouseClicked(int x, int y) {
         if (bWorld.getBounds().contains(x,y)){
-            SetGameState(WORLD);
+            SetGameState(WORLDEDITOR);
         }
         if (bQuit.getBounds().contains(x,y)){
             System.exit(0);

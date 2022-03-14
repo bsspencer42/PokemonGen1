@@ -5,7 +5,7 @@ import helpz.LevelBuild;
 
 import java.awt.*;
 
-public class Battle extends GameScene implements SceneMethods {
+public class Battle extends GameScene {
     private int[][] lvl;
 
     public Battle(Game game) {
