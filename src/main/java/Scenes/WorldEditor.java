@@ -4,6 +4,7 @@ import Game.Game;
 import Objects.Tile;
 import UI.BottomBar;
 import helpz.LevelBuild;
+import helpz.LoadSave;
 
 import java.awt.*;
 
@@ -17,8 +18,22 @@ public class WorldEditor extends GameScene {
 
     public WorldEditor(Game game) {
         super(game,480, 420);
-        lvl = LevelBuild.getLevelData();
+        // Load Edit bar
         bottomBar = new BottomBar(0,320,480,100,getGame());
+        // Load Default level
+        loadDefaultLevel();
+    }
+
+    private void loadDefaultLevel() {
+        lvl = LoadSave.getLevelData("new level");
+    }
+
+    private void createDefaultLevel() {
+        int[] arr = new int[150];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = 0;
+        }
+        LoadSave.CreateLevel("new level",arr);
     }
 
     @Override
@@ -110,5 +125,9 @@ public class WorldEditor extends GameScene {
         else {
             changeTile(x,y);
         }
+    }
+
+    public void saveLevel() {
+        LoadSave.saveLevel("new level",lvl);
     }
 }
