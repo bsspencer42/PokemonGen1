@@ -10,6 +10,7 @@ import static Game.GameStates.*;
 public class Menu extends GameScene {
     private int[][] lvl;
     private MyButton bWorld, bQuit;
+
     public Menu(Game game) {
         super(game);
         lvl = LevelBuild.getLevelData();

@@ -1,3 +1,5 @@
 ﻿name,x,y,width,height,canMove, id
-grass1,6,64,16,16,1,0
-wildGrass,6,81,16,16,1,1
+grass1,103,1,16,16,0,0
+wildGrass,120,1,16,16,0,1
+rock1,35,1,16,16,0,2
+rockCornerLR,103,154,16,16,0,3

@@ -40,11 +40,11 @@ public class Game extends JFrame implements Runnable {
     private void initClasses() {
         this.render = new Render(this);
         gameScreen = new GameScreen(this);
+        sprites = new SpriteDAO().getTileSet();
         menu = new Menu(this);
         battle = new Battle(this);
         world = new World(this);
         worldEditor = new WorldEditor(this);
-        sprites = new SpriteDAO().getTileSet();
     }
 
     private void updateGame() {

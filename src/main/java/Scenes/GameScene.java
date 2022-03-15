@@ -48,6 +48,11 @@ public class GameScene implements SceneMethods {
 
     }
 
+    @Override
+    public void mouseDragged(int x, int y) {
+
+    }
+
     public int getWidth() {
         return width;
     }

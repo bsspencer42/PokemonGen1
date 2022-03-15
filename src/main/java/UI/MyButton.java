@@ -7,18 +7,33 @@ public class MyButton {
     private int y;
     private int width;
     private int height;
+    private int id;
     private String text;
     private Rectangle bounds;
     private boolean mouseOver,mousePressed;
 
+    // Normal buttons
     public MyButton(String text, int x, int y, int width, int height){
         this.x = x;
         this.y = y;
         this.width = width;
         this. height = height;
         this.text = text;
+        this.id = -1;
         initBounds();
     }
+
+    // Tile buttons
+    public MyButton(String text, int x, int y, int width, int height, int id){
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this. height = height;
+        this.text = text;
+        this.id = id;
+        initBounds();
+    }
+
 
     private void initBounds(){
         this.bounds = new Rectangle(x,y,width,height);
@@ -68,6 +83,14 @@ public class MyButton {
         this.mousePressed = mousePressed;
     }
 
+    public boolean isMouseOver(){
+        return mouseOver;
+    }
+
+    public boolean isMousePressed(){
+        return mousePressed;
+    }
+
     public Rectangle getBounds(){
         return bounds;
     }
@@ -77,4 +100,23 @@ public class MyButton {
         this.mousePressed = false;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
 }

@@ -4,17 +4,19 @@ import java.awt.image.BufferedImage;
 
 public class Tile {
     private String name;
+    private int id;
     private int width;
     private int height;
     private boolean canMove;
-    private BufferedImage img;
+    private BufferedImage sprite;
 
-    public Tile(String name, int width, int height, boolean canMove, BufferedImage sprite ) {
+    public Tile(String name, int id, int width, int height, boolean canMove, BufferedImage sprite ) {
         this.name = name;
+        this.id = id;
         this.width = width;
         this.height = height;
         this.canMove = canMove;
-        this.img = sprite;
+        this.sprite = sprite;
     }
 
     public String getName() {
@@ -33,7 +35,11 @@ public class Tile {
         return canMove;
     }
 
-    public BufferedImage getSprite(){
-        return img;
+    public BufferedImage getSprite() {
+        return sprite;
+    }
+
+    public int getId() {
+        return id;
     }
 }

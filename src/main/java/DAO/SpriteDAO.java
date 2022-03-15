@@ -8,9 +8,7 @@ import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class  SpriteDAO {
@@ -18,7 +16,7 @@ public class  SpriteDAO {
     // Get tileSet
     public ArrayList<Tile> getTileSet(){
         // Get img
-        String spriteMaster = "/Objects/tilesets.png";
+        String spriteMaster = "/Objects/tileSets.png";
         String spriteCSV = "tileSetData.csv";
         BufferedImage img = importImg(spriteMaster);
         // Return Value
@@ -37,7 +35,7 @@ public class  SpriteDAO {
             BufferedImage currentImg = reScaleImage(img.getSubimage(x,y,width,height));
             boolean canMove = Boolean.parseBoolean(spriteData.get(5));
             int id = Integer.parseInt(spriteData.get(6));
-            Tile currentSprite = new Tile(name,width,height,canMove,currentImg);
+            Tile currentSprite = new Tile(name,id,width,height,canMove,currentImg);
             sprites.add(id,currentSprite);
         }
         return sprites;
