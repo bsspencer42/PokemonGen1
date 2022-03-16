@@ -22,7 +22,7 @@ public class MyMouseListener implements MouseListener, MouseMotionListener {
                 case MENU:
                     game.getMenu().mouseClicked(e.getX(),e.getY());
                     break;
-                case WORLD:
+                case PLAY:
                     break;
                 case BATTLE:
                     break;
@@ -39,7 +39,7 @@ public class MyMouseListener implements MouseListener, MouseMotionListener {
             case MENU:
                 game.getMenu().mousePressed(e.getX(),e.getY());
                 break;
-            case WORLD:
+            case PLAY:
                 break;
             case BATTLE:
                 break;
@@ -56,7 +56,7 @@ public class MyMouseListener implements MouseListener, MouseMotionListener {
             case MENU:
                 game.getMenu().mouseReleased(e.getX(),e.getY());
                 break;
-            case WORLD:
+            case PLAY:
                 break;
             case BATTLE:
                 break;
@@ -81,7 +81,7 @@ public class MyMouseListener implements MouseListener, MouseMotionListener {
         switch (GameStates.gameState){
             case MENU:
                 break;
-            case WORLD:
+            case PLAY:
                 break;
             case BATTLE:
                 break;
@@ -98,7 +98,7 @@ public class MyMouseListener implements MouseListener, MouseMotionListener {
             case MENU:
                 game.getMenu().mouseMoved(e.getX(),e.getY());
                 break;
-            case WORLD:
+            case PLAY:
                 break;
             case BATTLE:
                 break;

@@ -2,24 +2,22 @@ package Scenes;
 
 import Game.Game;
 import UI.MyButton;
-import helpz.LevelBuild;
 
 import java.awt.*;
 import static Game.GameStates.*;
 
 public class Menu extends GameScene {
-    private int[][] lvl;
-    private MyButton bWorld, bQuit;
+    private MyButton bPlay, bEdit, bQuit;
 
     public Menu(Game game) {
         super(game);
-        lvl = LevelBuild.getLevelData();
         initButtons();
     }
 
     private void initButtons() {
-        bWorld = new MyButton("World Editor", 175, 100, 100,30);
-        bQuit = new MyButton("Quit", 175, 150, 100, 30);
+        bPlay = new MyButton("Play", 175, 80, 100, 30);
+        bEdit = new MyButton("World Editor", 175, 130, 100,30);
+        bQuit = new MyButton("Quit", 175, 180, 100, 30);
     }
 
 
@@ -30,10 +28,13 @@ public class Menu extends GameScene {
 
     @Override
     public void mouseClicked(int x, int y) {
-        if (bWorld.getBounds().contains(x,y)){
+        if (bEdit.getBounds().contains(x,y)){
             SetGameState(WORLDEDITOR);
         }
-        if (bQuit.getBounds().contains(x,y)){
+        else if (bPlay.getBounds().contains(x,y)){
+            SetGameState(PLAY);
+        }
+        else if (bQuit.getBounds().contains(x,y)){
             System.exit(0);
         }
     }
@@ -41,20 +42,26 @@ public class Menu extends GameScene {
     @Override
     public void mouseMoved(int x, int y) {
         resetButtons();
-        if (bWorld.getBounds().contains(x,y)){
-            bWorld.setMouseOver(true);
+        if (bEdit.getBounds().contains(x,y)){
+            bEdit.setMouseOver(true);
         }
-        if (bQuit.getBounds().contains(x,y)){
+        else if (bPlay.getBounds().contains(x,y)){
+            bPlay.setMouseOver(true);
+        }
+        else if (bQuit.getBounds().contains(x,y)){
             bQuit.setMouseOver(true);
         }
     }
 
     @Override
     public void mousePressed(int x, int y) {
-        if (bWorld.getBounds().contains(x,y)){
-            bWorld.setMousePressed(true);
+        if (bEdit.getBounds().contains(x,y)){
+            bEdit.setMousePressed(true);
         }
-        if (bQuit.getBounds().contains(x,y)){
+        else if (bPlay.getBounds().contains(x,y)){
+            bPlay.setMousePressed(true);
+        }
+        else if (bQuit.getBounds().contains(x,y)){
             bQuit.setMousePressed(true);
         }
     }
@@ -65,12 +72,14 @@ public class Menu extends GameScene {
     }
 
     private void resetButtons() {
-        bWorld.resetBooleans();
+        bPlay.resetBooleans();
+        bEdit.resetBooleans();
         bQuit.resetBooleans();
     }
 
     private void drawButtons(Graphics g) {
-        bWorld.draw(g);
+        bPlay.draw(g);
+        bEdit.draw(g);
         bQuit.draw(g);
     }
 

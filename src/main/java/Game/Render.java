@@ -1,7 +1,6 @@
 package Game;
 
 import Scenes.GameScene;
-import Scenes.SceneMethods;
 
 import java.awt.*;
 
@@ -18,7 +17,7 @@ public class Render {
     public void render(Graphics g){
         GameScene currentScene = null;
         switch (GameStates.gameState){
-            case WORLD:
+            case PLAY:
                 currentScene = game.getWorld();
                 break;
             case BATTLE:

@@ -10,7 +10,6 @@ import java.util.Scanner;
 public class LoadSave {
 
     public static void CreateFile(){
-
         File txtFile = new File("src/main/resources/Maps/testTextFile.txt");
         try {
             txtFile.createNewFile();
@@ -43,22 +42,18 @@ public class LoadSave {
             return list;
         }
         catch (FileNotFoundException e) {
+            System.out.println("File: " + file.getName() + " does not exist!");
             e.printStackTrace();
+            System.exit(0);
         }
         return list;
     }
 
     public static int[][] getLevelData(String name){
         File lvlFile = new File("src/main/resources/Maps/"+name+".txt");
-        if (lvlFile.exists()){
-            ArrayList<Integer> list = ReadFromFile(lvlFile);
-            return utilz.ArrayListTo2Dint(list,10,15);
+        ArrayList<Integer> list = ReadFromFile(lvlFile);
+        return utilz.ArrayListTo2Dint(list,10,15);
         }
-        else {
-            System.out.println("File: " + name + " does not exist!");
-            return null;
-        }
-    }
 
     public static void CreateLevel(String name, int[] idArr){
         File newLevel = new File("src/main/resources/Maps/" + name + ".txt");
@@ -75,16 +70,17 @@ public class LoadSave {
     }
 
 
-    public static void saveLevel(String name, int[][] idArr){
+    public static void saveLevel(String name, int[][] idArr) {
         File levelFile = new File("src/main/resources/Maps/" + name + ".txt");
-        if (levelFile.exists()){
-            WriteToFile(levelFile,utilz.TwoDto1DintArr(idArr));
-        }
-        else {
+        if (levelFile.exists()) {
+            WriteToFile(levelFile, utilz.TwoDto1DintArr(idArr));
+        } else {
             System.out.println("Level does not exist!");
             return;
         }
     }
 
-
+    public static int[][] loadDefaultLevel(){
+        return getLevelData("defaultLevel");
+    }
 }

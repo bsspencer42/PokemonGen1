@@ -1,7 +1,7 @@
 package Game;
 
 public enum GameStates {
-    WORLD,
+    PLAY,
     WORLDEDITOR,
     BATTLE,
     MENU;

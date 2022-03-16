@@ -29,7 +29,7 @@ public class KeyBoardListener implements KeyListener {
             GameStates.gameState = BATTLE;
         }
         else if (e.getKeyCode() == KeyEvent.VK_D){
-            GameStates.gameState = WORLD;
+            GameStates.gameState = PLAY;
         }
     }
 

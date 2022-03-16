@@ -3,7 +3,6 @@ package Scenes;
 import Game.Game;
 import Objects.Tile;
 import UI.BottomBar;
-import helpz.LevelBuild;
 import helpz.LoadSave;
 
 import java.awt.*;
@@ -21,19 +20,7 @@ public class WorldEditor extends GameScene {
         // Load Edit bar
         bottomBar = new BottomBar(0,320,480,100,getGame());
         // Load Default level
-        loadDefaultLevel();
-    }
-
-    private void loadDefaultLevel() {
-        lvl = LoadSave.getLevelData("new level");
-    }
-
-    private void createDefaultLevel() {
-        int[] arr = new int[150];
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = 0;
-        }
-        LoadSave.CreateLevel("new level",arr);
+        this.lvl = LoadSave.loadDefaultLevel();
     }
 
     @Override
@@ -96,8 +83,6 @@ public class WorldEditor extends GameScene {
             drawSelect = true;
             mouseX = (x / 32) * 32;
             mouseY = (y / 32) * 32;
-
-
         }
     }
 
@@ -128,6 +113,7 @@ public class WorldEditor extends GameScene {
     }
 
     public void saveLevel() {
-        LoadSave.saveLevel("new level",lvl);
+        LoadSave.saveLevel("defaultLevel",lvl);
+        getGame().getPlay().setLvl(lvl);
     }
 }

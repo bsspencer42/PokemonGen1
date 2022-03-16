@@ -2,6 +2,7 @@ package Scenes;
 
 import Game.Game;
 import helpz.LevelBuild;
+import helpz.LoadSave;
 
 import java.awt.*;
 
@@ -10,7 +11,7 @@ public class Battle extends GameScene {
 
     public Battle(Game game) {
         super(game);
-        lvl = LevelBuild.getLevelData();
+        this.lvl = LoadSave.loadDefaultLevel();
     }
 
     @Override

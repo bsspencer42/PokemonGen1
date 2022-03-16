@@ -1,10 +1,9 @@
 package Game;
 
 import DAO.SpriteDAO;
-import Inputs.KeyBoardListener;
 import Scenes.Battle;
 import Scenes.Menu;
-import Scenes.World;
+import Scenes.Play;
 import Objects.Tile;
 import Scenes.WorldEditor;
 
@@ -18,7 +17,7 @@ public class Game extends JFrame implements Runnable {
     private Render render;
     private Menu menu;
     private Battle battle;
-    private World world;
+    private Play play;
     private WorldEditor worldEditor;
 
     // Threading
@@ -43,7 +42,7 @@ public class Game extends JFrame implements Runnable {
         sprites = new SpriteDAO().getTileSet();
         menu = new Menu(this);
         battle = new Battle(this);
-        world = new World(this);
+        play = new Play(this);
         worldEditor = new WorldEditor(this);
     }
 
@@ -102,26 +101,24 @@ public class Game extends JFrame implements Runnable {
     public Render getRender(){
         return this.render;
     }
-
     public Menu getMenu() {
         return menu;
     }
-
     public Battle getBattle() {
         return battle;
     }
-
-    public World getWorld() {
-        return world;
+    public Play getWorld() {
+        return play;
     }
-
+    public Play getPlay() {
+        return play;
+    }
     public WorldEditor getWorldEditor(){
         return worldEditor;
     }
     public ArrayList<Tile> getSprites(){
         return sprites;
     }
-
     public GameScreen getGameScreen() {
         return gameScreen;
     }
