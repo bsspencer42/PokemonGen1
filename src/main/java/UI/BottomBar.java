@@ -37,10 +37,13 @@ public class BottomBar {
         int xStart=110;
         int yStart=330;
         int xOffSet =  (int) (w*1.1f);
+        int yOffSet = (int) (h*1.1f);
         int i = 0;
+        int currentYoffSet;
 
         for (Tile sprite : game.getSprites()) {
-            tileButtons.add(new MyButton(sprite.getName(), xStart+xOffSet*i, yStart,w,h,sprite.getId()));
+            currentYoffSet = (xOffSet*i / 350) * yOffSet;
+            tileButtons.add(new MyButton(sprite.getName(), xStart+(xOffSet*i % 350), yStart+currentYoffSet,w,h,sprite.getId()));
             i++;
         }
 
@@ -68,9 +71,9 @@ public class BottomBar {
 
     private void drawSelectedTile(Graphics g) {
         if (selectedTile != null){
-            g.drawImage(selectedTile.getSprite(),440, 330 , 32, 32, null);
+            g.drawImage(selectedTile.getSprite(),40, 490 , 32, 32, null);
             g.setColor(Color.BLACK);
-            g.drawRect(440,330,32,32);
+            g.drawRect(40,490,32,32);
         }
     }
 
@@ -108,6 +111,12 @@ public class BottomBar {
         else if (save.getBounds().contains(x,y)){
             saveLevel();
         }
+        else if (previous.getBounds().contains(x,y)){
+            // TODO Load previous tiles
+        }
+        else if (next.getBounds().contains(x,y)){
+            // TODO Load next tiles
+        }
         // Select tile
         else {
             for (MyButton b : tileButtons){
@@ -133,6 +142,12 @@ public class BottomBar {
         else if (save.getBounds().contains(x,y)){
             save.setMouseOver(true);
         }
+        else if (previous.getBounds().contains(x,y)){
+            previous.setMouseOver(true);
+        }
+        else if (next.getBounds().contains(x,y)){
+            next.setMouseOver(true);
+        }
         // MouseOver for tilebuttons
         else {
             for(MyButton b : tileButtons){
@@ -151,6 +166,12 @@ public class BottomBar {
         }
         else if (save.getBounds().contains(x,y)){
             save.setMousePressed(true);
+        }
+        else if (previous.getBounds().contains(x,y)){
+            previous.setMousePressed(true);
+        }
+        else if (next.getBounds().contains(x,y)){
+            next.setMousePressed(true);
         }
         else {
             for(MyButton b : tileButtons){
