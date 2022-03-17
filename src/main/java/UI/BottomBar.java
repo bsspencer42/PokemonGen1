@@ -12,10 +12,12 @@ import static Game.GameStates.*;
 public class BottomBar {
 
     private int x, y, width, height;
-    private MyButton menu, save, previous, next;
+    private MyButton menu, save, previous, next,selectedTileName;
     private Game game;
     private ArrayList<MyButton> tileButtons = new ArrayList<>();
     private Tile selectedTile;
+    private int beginDisplayTile = 0;
+    private int numDisplayTiles = 80;
 
     public BottomBar(int x, int y, int width, int height, Game game) {
         this.x = x;
@@ -31,22 +33,26 @@ public class BottomBar {
         save = new MyButton("Save", 15, 370,80,30);
         previous = new MyButton("Previous",15,410,80,30);
         next = new MyButton("Next",15,450,80,30);
+        drawTiles();
+    }
 
+    private void drawTiles(){
         int w = 32;
         int h = 32;
         int xStart=110;
         int yStart=330;
         int xOffSet =  (int) (w*1.1f);
         int yOffSet = (int) (h*1.1f);
-        int i = 0;
         int currentYoffSet;
+        tileButtons = new ArrayList<>();
+        int currentId;
 
-        for (Tile sprite : game.getSprites()) {
+        for (int i = 0; i < numDisplayTiles;i++) {
             currentYoffSet = (xOffSet*i / 350) * yOffSet;
-            tileButtons.add(new MyButton(sprite.getName(), xStart+(xOffSet*i % 350), yStart+currentYoffSet,w,h,sprite.getId()));
-            i++;
+            currentId = (beginDisplayTile+i) % game.getSprites().size();
+            tileButtons.add(new MyButton(game.getSprites().get(currentId).getName(),
+                    xStart+(xOffSet*i % 350), yStart+currentYoffSet,w,h,game.getSprites().get(currentId).getId()));
         }
-
     }
 
     public void draw(Graphics g){
@@ -73,7 +79,8 @@ public class BottomBar {
         if (selectedTile != null){
             g.drawImage(selectedTile.getSprite(),40, 490 , 32, 32, null);
             g.setColor(Color.BLACK);
-            g.drawRect(40,490,32,32);
+            selectedTileName = new MyButton(selectedTile.getName(),15,540,80,30);
+            selectedTileName.draw(g);
         }
     }
 
@@ -112,10 +119,19 @@ public class BottomBar {
             saveLevel();
         }
         else if (previous.getBounds().contains(x,y)){
-            // TODO Load previous tiles
+            // Wrap around if negative
+            if (beginDisplayTile < numDisplayTiles){
+                beginDisplayTile = game.getSprites().size()+(beginDisplayTile - numDisplayTiles);
+            }else {
+                beginDisplayTile-=numDisplayTiles;
+            }
+            System.out.println(beginDisplayTile);
+            drawTiles();
         }
         else if (next.getBounds().contains(x,y)){
-            // TODO Load next tiles
+            beginDisplayTile = (beginDisplayTile+numDisplayTiles) % game.getSprites().size();
+            System.out.println(beginDisplayTile);
+            drawTiles();
         }
         // Select tile
         else {

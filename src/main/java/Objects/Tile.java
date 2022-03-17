@@ -7,11 +7,11 @@ public class Tile {
     private int id;
     private int width;
     private int height;
-    private boolean canMove;
+    private String canMove;
     private int layer;
     private BufferedImage sprite;
 
-    public Tile(String name, int id, int width, int height, boolean canMove, BufferedImage sprite, int layer) {
+    public Tile(String name, int id, int width, int height, String canMove, BufferedImage sprite, int layer) {
         this.name = name;
         this.id = id;
         this.width = width;
@@ -33,7 +33,7 @@ public class Tile {
         return height;
     }
 
-    public boolean isCanMove() {
+    public String getCanMove() {
         return canMove;
     }
 

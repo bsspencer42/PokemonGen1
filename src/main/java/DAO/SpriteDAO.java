@@ -33,7 +33,7 @@ public class  SpriteDAO {
             int width = Integer.parseInt(spriteData.get(3));
             int height = Integer.parseInt(spriteData.get(4));
             BufferedImage currentImg = reScaleImage(img.getSubimage(x,y,width,height));
-            boolean canMove = Boolean.parseBoolean(spriteData.get(5));
+            String canMove = spriteData.get(5);
             int id = Integer.parseInt(spriteData.get(6));
             int layer = Integer.parseInt(spriteData.get(7));
             Tile currentSprite = new Tile(name,id,width,height,canMove,currentImg,layer);
