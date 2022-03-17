@@ -8,15 +8,17 @@ public class Tile {
     private int width;
     private int height;
     private boolean canMove;
+    private int layer;
     private BufferedImage sprite;
 
-    public Tile(String name, int id, int width, int height, boolean canMove, BufferedImage sprite ) {
+    public Tile(String name, int id, int width, int height, boolean canMove, BufferedImage sprite, int layer) {
         this.name = name;
         this.id = id;
         this.width = width;
         this.height = height;
         this.canMove = canMove;
         this.sprite = sprite;
+        this.layer = layer;
     }
 
     public String getName() {
@@ -41,5 +43,9 @@ public class Tile {
 
     public int getId() {
         return id;
+    }
+
+    public int getLayer() {
+        return layer;
     }
 }

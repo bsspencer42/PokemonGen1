@@ -1,5 +1,7 @@
 package helpz;
 
+import Objects.Level;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -49,7 +51,7 @@ public class LoadSave {
         return list;
     }
 
-    public static int[][] getLevelData(String name){
+    public static Level getLevelData(String name){
         File lvlFile = new File("src/main/resources/Maps/"+name+".txt");
         ArrayList<Integer> list = ReadFromFile(lvlFile);
         return utilz.ArrayListTo2Dint(list,10,15);
@@ -70,17 +72,33 @@ public class LoadSave {
     }
 
 
-    public static void saveLevel(String name, int[][] idArr) {
+    public static void saveLevel(String name, Level lvl) {
         File levelFile = new File("src/main/resources/Maps/" + name + ".txt");
         if (levelFile.exists()) {
-            WriteToFile(levelFile, utilz.TwoDto1DintArr(idArr));
+            WriteToFile(levelFile, utilz.TwoDto1DintArr(lvl));
         } else {
             System.out.println("Level does not exist!");
             return;
         }
     }
 
-    public static int[][] loadDefaultLevel(){
+    public static int[][] getDefaultOverLay() {
+        int[][] lvl = {
+                {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+                {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1},
+        };
+        return lvl;
+    }
+
+    public static Level loadDefaultLevel(){
         return getLevelData("defaultLevel");
     }
 }

@@ -12,7 +12,7 @@ import static Game.GameStates.*;
 public class BottomBar {
 
     private int x, y, width, height;
-    private MyButton menu, save;
+    private MyButton menu, save, previous, next;
     private Game game;
     private ArrayList<MyButton> tileButtons = new ArrayList<>();
     private Tile selectedTile;
@@ -28,7 +28,9 @@ public class BottomBar {
 
     private void initButtons() {
         menu = new MyButton("Menu", 15, 330, 80,30);
-        save = new MyButton("Save", 15, 380,80,30);
+        save = new MyButton("Save", 15, 370,80,30);
+        previous = new MyButton("Previous",15,410,80,30);
+        next = new MyButton("Next",15,450,80,30);
 
         int w = 32;
         int h = 32;
@@ -56,6 +58,8 @@ public class BottomBar {
         // Draw menu
         menu.draw(g);
         save.draw(g);
+        previous.draw(g);
+        next.draw(g);
         // Draw tile buttons
         drawTileButtons(g);
         // Draw selected tile
@@ -165,6 +169,8 @@ public class BottomBar {
     private void resetButtons() {
         menu.resetBooleans();
         save.resetBooleans();
+        previous.resetBooleans();
+        next.resetBooleans();
         for (MyButton b : tileButtons){
             b.setMouseOver(false);
             b.resetBooleans();

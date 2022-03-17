@@ -1,14 +1,17 @@
 package Scenes;
 
 import Game.Game;
+import Objects.Level;
 import Objects.Tile;
 import UI.BottomBar;
+import helpz.ImageModify;
 import helpz.LoadSave;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class WorldEditor extends GameScene {
-    private int[][] lvl;
+    private Level lvl;
     private BottomBar bottomBar;
     private Tile selectedTile;
     private int mouseX, mouseY;
@@ -16,19 +19,27 @@ public class WorldEditor extends GameScene {
     private boolean drawSelect;
 
     public WorldEditor(Game game) {
-        super(game,480, 420);
+        super(game,480, 620);
         // Load Edit bar
-        bottomBar = new BottomBar(0,320,480,100,getGame());
+        bottomBar = new BottomBar(0,320,480,300,getGame());
         // Load Default level
         this.lvl = LoadSave.loadDefaultLevel();
     }
 
     @Override
     public void render(Graphics g) {
-        for (int y = 0; y < lvl.length; y++) {
-            for (int x = 0; x < lvl[y].length; x++) {
-                int id = lvl[y][x];
-                g.drawImage(super.getGame().getSprites().get(lvl[y][x]).getSprite(), x * 32, y * 32, null);
+        BufferedImage currentImg;
+        for (int y = 0; y < lvl.getBase().length; y++) {
+            for (int x = 0; x < lvl.getBase()[y].length; x++) {
+                // Overlay
+                if (lvl.getBase2()[y][x] != -1) {
+                    BufferedImage[] imgs = {getGame().getSprites().get(lvl.getBase()[y][x]).getSprite(),getGame().getSprites().get(lvl.getBase2()[y][x]).getSprite()};
+                    currentImg = ImageModify.buildImg(imgs);
+                }
+                else{
+                    currentImg = getGame().getSprites().get(lvl.getBase()[y][x]).getSprite();
+                }
+                g.drawImage(currentImg, x * 32, y * 32, null);
             }
         }
         bottomBar.draw(g);
@@ -69,7 +80,15 @@ public class WorldEditor extends GameScene {
             lastTileId = selectedTile.getId();
 
             // Change tile in lvl array
-            lvl[tileY][tileX] = selectedTile.getId();
+            // If placing base tile, erase layer1 tile
+            if (selectedTile.getLayer() == 0){
+                lvl.getBase()[tileY][tileX] = selectedTile.getId();
+                lvl.getBase2()[tileY][tileX] = -1;
+            }
+            // Place layer1 tile in layer1
+            else {
+                lvl.getBase2()[tileY][tileX] = selectedTile.getId();
+            }
         }
     }
 
